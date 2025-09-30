@@ -1,10 +1,77 @@
 ﻿@page
-@model IndexModel
+@model Barlangok.Pages.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Index</h1>
+
+<form method="get">
+    <select asp-for="@Model.ValasztottTelepules">
+        <option value="">--- Válassz Települést ---</option>
+        @foreach (var telepules in Model.Telepulesek)
+            {
+            <option value="@telepules">@telepules</option>
+            }
+    </select>
+    <button type="submit">Szűrés</button>
+</form>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Barlangok[0].Nev)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Barlangok[0].Hossz)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Barlangok[0].Kiterjedes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Barlangok[0].Melyseg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Barlangok[0].Magassag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Barlangok[0].Telepules)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Barlangok) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nev)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hossz)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kiterjedes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Melyseg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Magassag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telepules)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -9,6 +9,6 @@ namespace Barlangok.Data
         {
         }
 
-        public DbSet<BarlangModel> barlangok;
+        public DbSet<BarlangModel> barlangok { get; set; }
     }
 }
