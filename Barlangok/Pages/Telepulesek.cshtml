@@ -10,7 +10,13 @@
         </tr>
     </thead>
     <tbody>
-
+        @foreach (var telepules in Model.barlangok)
+        {
+            <tr>
+                <td>@telepules.Telepules</td>
+                <td>@telepules.BarlangokSzama</td>
+            </tr>
+        }
     </tbody>
 </table>
 
